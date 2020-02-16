@@ -47,9 +47,6 @@ The configuration can contain the following properties:
 
 - `debug` \<boolean\> **optional**: Enable debug mode and write more logs.
 
-Below are two example configurations. One is using a simple string url and the other is using a simple urlObject.  
-Both configs can be used for a basic plugin configuration.
-
 ```json
 {
     "accessories": [
