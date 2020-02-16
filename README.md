@@ -1,6 +1,6 @@
 # homebridge-pisense
 
-This [Homebridge](https://github.com/nfarina/homebridge) plugin can be used integrate your Raspberry Pi Sense Hat into HomeKit.  It also requires [Flask Sense](https://github.com/perspectsite/flask-sense) which is a Flask-based HTTP server that interfaes with the Sense Hat.
+This [Homebridge](https://github.com/nfarina/homebridge) plugin can be used integrate your Raspberry Pi Sense Hat into HomeKit.  It also requires [Flask PiSense](https://github.com/perspectsite/flask-pisense) which is a Flask-based HTTP server that interfaes with the Sense Hat.
 
 ## Installation
 
