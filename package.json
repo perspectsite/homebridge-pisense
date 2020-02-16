@@ -1,7 +1,7 @@
 {
-  "name": "homebridge-http-humidity-sensor",
-  "version": "1.0.5",
-  "description": "Http humidity sensor for Homebridge",
+  "name": "homebridge-pisense",
+  "version": "1.0.1",
+  "description": "Homebridge for the Raspberry Pi Sense Hat",
   "license": "ISC",
   "keywords": [
     "homebridge-plugin"
@@ -11,10 +11,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Supereg/homebridge-http-humidity-sensor"
+    "url": "git+https://github.com/perspectsite/homebridge-pisense.git"
   },
   "bugs": {
-    "url": "https://github.com/Supereg/homebridge-http-humidity-sensor/issues"
+    "url": "https://github.com/perspectsite/homebridge-pisense/issues"
   },
   "engines": {
     "node": ">=4.3.2",
@@ -25,5 +25,11 @@
   },
   "devDependencies": {
     "hap-nodejs": "^0.4.53"
-  }
+  },
+  "homepage": "https://github.com/perspectsite/homebridge-pisense#readme",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "author": "Perspect"
 }

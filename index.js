@@ -43,21 +43,6 @@ function HTTP_HUMIDITY(log, config) {
     }
 
     this.statusCache = new Cache(config.statusCache, 0);
-    this.statusPattern = /([0-9]{1,3})/;
-    try {
-        if (config.statusPattern)
-            this.statusPattern = configParser.parsePattern(config.statusPattern);
-    } catch (error) {
-        this.log.warn("Property 'statusPattern' was given in an unsupported type. Using default value!");
-    }
-
-    // this.patternGroupToExtract = 1;
-    // if (config.patternGroupToExtract) {
-    //     if (typeof config.patternGroupToExtract === "number")
-    //         this.patternGroupToExtract = config.patternGroupToExtract;
-    //     else
-    //         this.log.warn("Property 'patternGroupToExtract' must be a number! Using default value!");
-    // }
 
     this.homebridgeService = new Service.HumiditySensor(this.name);
     this.homebridgeService.getCharacteristic(Characteristic.CurrentRelativeHumidity)
@@ -158,8 +143,10 @@ HTTP_HUMIDITY.prototype = {
                 let celsius;
                 let pressure;
                 let data;
+                let jdata;
                 try {
-                    humidity = body['humidity'];
+                    jdata = JSON.parse(body);
+                    humidity = jdata['humidity'];
                     // data['humidity'] = body['humidity'];
                     // data['fahrenheit'] = body['fahrenheit'];
                     // data['celsius'] = body['celsius'];
@@ -175,7 +162,7 @@ HTTP_HUMIDITY.prototype = {
                     this.log("data is currently at %s", humidity);
 
                 this.statusCache.queried();
-                callback(null, data);
+                callback(null, humidity);
             }
         });
     },
