@@ -50,13 +50,14 @@ function HTTP_HUMIDITY(log, config) {
     } catch (error) {
         this.log.warn("Property 'statusPattern' was given in an unsupported type. Using default value!");
     }
-    this.patternGroupToExtract = 1;
-    if (config.patternGroupToExtract) {
-        if (typeof config.patternGroupToExtract === "number")
-            this.patternGroupToExtract = config.patternGroupToExtract;
-        else
-            this.log.warn("Property 'patternGroupToExtract' must be a number! Using default value!");
-    }
+
+    // this.patternGroupToExtract = 1;
+    // if (config.patternGroupToExtract) {
+    //     if (typeof config.patternGroupToExtract === "number")
+    //         this.patternGroupToExtract = config.patternGroupToExtract;
+    //     else
+    //         this.log.warn("Property 'patternGroupToExtract' must be a number! Using default value!");
+    // }
 
     this.homebridgeService = new Service.HumiditySensor(this.name);
     this.homebridgeService.getCharacteristic(Characteristic.CurrentRelativeHumidity)
@@ -153,8 +154,17 @@ HTTP_HUMIDITY.prototype = {
             }
             else {
                 let humidity;
+                let fahrenheit;
+                let celsius;
+                let pressure;
+                let data;
                 try {
-                    humidity = utils.extractValueFromPattern(this.statusPattern, body, this.patternGroupToExtract);
+                    humidity = body['humidity'];
+                    // data['humidity'] = body['humidity'];
+                    // data['fahrenheit'] = body['fahrenheit'];
+                    // data['celsius'] = body['celsius'];
+                    // data['pressure'] = body['pressure'];
+                    
                 } catch (error) {
                     this.log("getHumidity() error occurred while extracting humidity from body: " + error.message);
                     callback(new Error("pattern error"));
@@ -162,10 +172,10 @@ HTTP_HUMIDITY.prototype = {
                 }
 
                 if (this.debug)
-                    this.log("Humidity is currently at %s", humidity);
+                    this.log("data is currently at %s", humidity);
 
                 this.statusCache.queried();
-                callback(null, humidity);
+                callback(null, data);
             }
         });
     },
